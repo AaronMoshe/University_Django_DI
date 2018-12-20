@@ -6,20 +6,20 @@ django.setup()
 
 import random
 from faker import Faker
-from student_app.models import Student, Note
+from student_app.models import Student, Note, Teacher
 
 
 fakegen = Faker()
 matieres = ["Français", "Maths", "Physique", "Magie"];
 
-def populate():
-  for i in range(2):
-  	newStudent = Student.objects.get_or_create(first_name=fakegen.first_name(), last_name=fakegen.last_name(), birthdate=fakegen.date());
-  	note = Note.objects.get_or_create( student=newStudent[0], matiere=random.choice(matieres), note= fakegen.random_int(min=0, max=20), coefficient=fakegen.random_int(min=1, max=10))
-  	print(i)
+def populate_teacher():
+	for i in range(3):
+		newProffesor = Teacher.objects.get_or_create(nom=fakegen.last_name(), prenom=fakegen.first_name(), email=fakegen.email(), matiere=random.choice(matieres), date_naissance=fakegen.date())
+		print(i)
+
 
 
 if __name__ == '__main__':
   print('populate script...')
-  populate()
+  populate_teacher()
   print('done populating.')

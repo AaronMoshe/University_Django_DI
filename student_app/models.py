@@ -17,3 +17,34 @@ class Note(models.Model):
 
 	def __str__(self):
 		return self.matiere
+
+class Teacher(models.Model):
+	nom = models.CharField(max_length=20)
+	prenom = models.CharField(max_length=20)
+	email = models.EmailField(max_length=40, unique=True)
+	matiere = models.CharField(max_length=20)
+	date_naissance = models.DateField()
+
+	def __str__(self):
+        return self.prenom
+
+class Diplome(models.Model):
+	nom = models.CharField(max_length=30)
+
+	def __str__(self):
+        return self.prenom
+
+
+class Teacher(models.Model):
+	nom = models.CharField(max_length=20)
+	prenom = models.CharField(max_length=20)
+	email = models.EmailField(max_length=40, unique=True)
+	diplome = models.ForeignKey(Diplome, on_delete=models.CASCADE)
+	noteBac = models.IntegerField(default=0)
+
+	def __str__(self):
+        return self.prenom
+
+
+
+
